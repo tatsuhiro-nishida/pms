@@ -1,0 +1,15 @@
+{
+    "type": "mongodb",
+    "url": "localhost:27017",
+    "database": "pms",
+    "entities": [
+        "dist/entities/**/*.entity{.ts,.js}"
+    ],
+    "migrations": [
+        "dist/migrations/**/*.js"
+    ],
+    "logging": true,
+    "ssl": false,
+    "useUnifiedTopology": true,
+    "useNewUrlParser": true
+}
