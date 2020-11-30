@@ -1,6 +1,6 @@
 {
     "type": "mongodb",
-    "url": "localhost:27017",
+    "url": "mongodb://localhost:27017",
     "database": "pms",
     "entities": [
         "dist/entities/**/*.entity{.ts,.js}"
