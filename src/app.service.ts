@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Project } from './entities/project.entity';
@@ -15,7 +15,9 @@ export class AppService {
     return 'Hello World!';
   }
 
-  addProject(project:Project) {
+  async addProject(project:Project) {
+    const p =  await this.projectRepository.findOne({"name": project.name});
+    if (p) throw new BadRequestException("name: " + p.name + " is registed");
     this.projectRepository.insert(project);
   }
 
