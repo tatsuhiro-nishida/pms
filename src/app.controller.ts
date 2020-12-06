@@ -25,6 +25,7 @@ export class AppController {
 
   @Post("/projects")
   addProject(@Body() project: Partial<Project>) {
+    if (this.appService.isExistsProject(project.name)) throw new BadRequestException("name: " + project.name + " is registed");
     this.appService.addProject(new Project(project));
   }
 

@@ -15,9 +15,12 @@ export class AppService {
     return 'Hello World!';
   }
 
+  async isExistsProject(name: string) {
+    const result = await this.projectRepository.findOne({"name": name}) ? true: false;
+    return result;
+  }
+
   async addProject(project:Project) {
-    const p =  await this.projectRepository.findOne({"name": project.name});
-    if (p) throw new BadRequestException("name: " + p.name + " is registed");
     this.projectRepository.insert(project);
   }
 
