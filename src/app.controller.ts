@@ -1,6 +1,4 @@
 import { BadRequestException, Body, Catch, Controller, Get, Param, Post } from '@nestjs/common';
-import { throws } from 'assert';
-import e from 'express';
 import { AppService } from './app.service';
 import { Project } from './entities/project.entity';
 
@@ -24,8 +22,8 @@ export class AppController {
   }
 
   @Post("/projects")
-  addProject(@Body() project: Partial<Project>) {
-    if (this.appService.isExistsProject(project.name)) throw new BadRequestException("name: " + project.name + " is registed");
+  async addProject(@Body() project: Partial<Project>) {
+    if (await this.appService.isExistsProject(project.name)) throw new BadRequestException("name: " + project.name + " is registed");
     this.appService.addProject(new Project(project));
   }
 

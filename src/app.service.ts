@@ -16,8 +16,8 @@ export class AppService {
   }
 
   async isExistsProject(name: string) {
-    const result = await this.projectRepository.findOne({"name": name}) ? true: false;
-    return result;
+    const result = await this.projectRepository.findOne({"name": name});
+    return result ? true: false;
   }
 
   async addProject(project:Project) {
@@ -31,4 +31,5 @@ export class AppService {
   getProject(id: string) {
     throw new Error('Method not implemented.');
   }
+
 }
