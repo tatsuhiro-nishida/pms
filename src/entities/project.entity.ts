@@ -1,7 +1,7 @@
 import { ExecSyncOptionsWithBufferEncoding } from 'child_process';
 import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
 
-@Entity('project')
+@Entity('projects')
 export class Project {
   @ObjectIdColumn() id: ObjectID;
   @Column() name: string;

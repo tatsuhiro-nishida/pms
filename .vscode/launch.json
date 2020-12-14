@@ -11,4 +11,5 @@
         "runtimeArgs": ["start:debug"],
         "console": "integratedTerminal",
       },
-  }
+    ]
+}
