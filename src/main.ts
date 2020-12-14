@@ -6,6 +6,12 @@ import { RedocModule, RedocOptions} from 'nestjs-redoc'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // クロスオリジン許可
+  app.enableCors({
+    origin: '*',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  });
+
   // add swagger module
   const options = new DocumentBuilder()
     .setTitle('Project Management Api')
