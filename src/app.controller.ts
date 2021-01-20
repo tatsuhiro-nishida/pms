@@ -45,11 +45,11 @@ export class AppController {
   async getProblems() {
     return this.appService.getProblems();
   }
-  @Get('/Comments')
+  @Get('/comments')
   async getComments() {
     return this.appService.getComments();
   }
-  @Get('/Members')
+  @Get('/members')
   async getMembers() {
     return this.appService.getMembers();
   }
