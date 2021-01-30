@@ -4,7 +4,7 @@ import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
 export class Problem {
   @ObjectIdColumn() _id: ObjectID;
   @Column() up: string;
-  @Column() projectWeekId: number;
+  @Column() projectWeekId: string;
   @Column() no: string;
   @Column() level: string;
   @Column() create: number;

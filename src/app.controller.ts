@@ -9,6 +9,12 @@ import {
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Project } from './entities/project.entity';
+import { Weekreport } from './entities/weekreport.entity';
+import { Problem } from './entities/problem.entity';
+import { Comment } from './entities/comment.entity';
+import { Member } from './entities/member.entity';
+import { Event } from './entities/event.entity';
+import { Order } from './entities/order.entity';
 
 @Controller('/v1/app')
 export class AppController {
@@ -44,6 +50,24 @@ export class AppController {
   @Get('/problems')
   async getProblems() {
     return this.appService.getProblems();
+  }
+  @Post('/problems')
+  async addProblem(@Body() problem: Partial<Problem>) {
+    if (
+      await this.appService.isExistsProblem(problem.projectWeekId, problem.no)
+    )
+      throw new BadRequestException(
+        'projectWeekId: ' +
+          problem.projectWeekId +
+          'no: ' +
+          problem.no +
+          ' is registed',
+      );
+    this.appService.addProblem(new Problem(problem));
+  }
+  @Post('/delproblem')
+  async deleateProblem(@Body() problem: Partial<Problem>) {
+    this.appService.deleateProblem(problem.projectWeekId, problem.no);
   }
   @Get('/comments')
   async getComments() {

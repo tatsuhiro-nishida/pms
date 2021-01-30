@@ -56,6 +56,22 @@ export class AppService {
   getProblems() {
     return this.problemRepository.find();
   }
+
+  async isExistsProblem(id: string, no: string) {
+    const result = await this.problemRepository.findOne({
+      projectWeekId: id,
+      no: no,
+    });
+    return result ? true : false;
+  }
+  async addProblem(problem: Problem) {
+    this.problemRepository.insert(problem);
+  }
+
+  async deleateProblem(id: string, no: string) {
+    this.problemRepository.delete({ projectWeekId: id, no: no });
+  }
+
   getComments() {
     return this.commentRepository.find();
   }
