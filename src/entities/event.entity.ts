@@ -7,7 +7,7 @@ export class Event {
   @Column() name: string;
   @Column() start: string;
   @Column() end: string;
-  @Column() timed: string;
+  @Column() timed: number;
 
   constructor(event?: Partial<Event>) {
     Object.assign(this, event);

@@ -46,6 +46,14 @@ export class AppController {
   async getWeekreports() {
     return this.appService.getWeekreports();
   }
+  @Post('/weekreports')
+  async addUpWeekreport(@Body() weekreport: Partial<Weekreport>) {
+    if (await this.appService.isExistsWeekreport(weekreport.projectWeekId)) {
+      this.appService.updateWeekreport(new Weekreport(weekreport));
+    } else {
+      this.appService.addWeekreport(new Weekreport(weekreport));
+    }
+  }
 
   @Get('/problems')
   async getProblems() {
@@ -72,6 +80,10 @@ export class AppController {
   @Get('/comments')
   async getComments() {
     return this.appService.getComments();
+  }
+  @Post('/comments')
+  async addComment(@Body() comment: Partial<Comment>) {
+    this.appService.addComment(new Comment(comment));
   }
   @Get('/members')
   async getMembers() {

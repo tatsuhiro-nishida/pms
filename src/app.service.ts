@@ -49,6 +49,25 @@ export class AppService {
     throw new Error('Method not implemented.');
   }
 
+  async isExistsWeekreport(id: string) {
+    const result = await this.weekreportRepository.findOne({
+      projectWeekId: id,
+    });
+    return result ? true : false;
+  }
+  async addWeekreport(weekreport: Weekreport): Promise<void> {
+    await this.weekreportRepository.insert(weekreport);
+  }
+  async updateWeekreport(weekreport: Weekreport): Promise<void> {
+    const item = await this.weekreportRepository.findOne({
+      projectWeekId: weekreport.projectWeekId,
+    });
+    await this.weekreportRepository.update(
+      { projectWeekId: weekreport.projectWeekId },
+      weekreport,
+    );
+  }
+
   getWeekreports() {
     return this.weekreportRepository.find();
   }
@@ -74,6 +93,9 @@ export class AppService {
 
   getComments() {
     return this.commentRepository.find();
+  }
+  async addComment(comment: Comment) {
+    this.commentRepository.insert(comment);
   }
   getMembers() {
     return this.memberRepository.find();
