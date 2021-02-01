@@ -55,9 +55,11 @@ export class AppService {
     });
     return result ? true : false;
   }
+
   async addWeekreport(weekreport: Weekreport): Promise<void> {
     await this.weekreportRepository.insert(weekreport);
   }
+
   async updateWeekreport(weekreport: Weekreport): Promise<void> {
     const item = await this.weekreportRepository.findOne({
       projectWeekId: weekreport.projectWeekId,
