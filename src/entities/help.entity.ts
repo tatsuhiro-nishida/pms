@@ -1,5 +1,6 @@
 import { ExecSyncOptionsWithBufferEncoding } from 'child_process';
 import StatusHistoryInfo from 'src/models/StatusHistoryInfo';
+import UserInfo from 'src/models/UserInfo';
 import { Entity, ObjectID, ObjectIdColumn, Column } from 'typeorm';
 
 @Entity('helps')
@@ -16,14 +17,10 @@ export class Help {
   @Column() status: string;
   @Column() termStart: string;
   @Column() termEnd: string;
-  @Column() org: string;
-  @Column() ownerUserId: string;
-  @Column() contactUserName: string;
-  @Column() contactMailAddress: string;
-  @Column() contactTelephoneNo: string;
-  @Column() updateDate: string;
-  @Column() canEdit: boolean;
+  @Column() owner: UserInfo;
+  @Column() updateDate: Date;
   @Column() histories: StatusHistoryInfo[];
+  @Column() negotiators: UserInfo[];
 
   constructor(help?: Partial<Help>) {
     Object.assign(this, help);
