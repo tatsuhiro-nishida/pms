@@ -9,7 +9,6 @@ import {
   Post,
 } from '@nestjs/common';
 import { HelpService } from './help.service';
-import { Project } from './entities/project.entity';
 import { Help } from './entities/help.entity';
 
 @Controller('/v1/help')
