@@ -9,10 +9,14 @@ import { Comment } from './entities/comment.entity';
 import { Member } from './entities/member.entity';
 import { Event } from './entities/event.entity';
 import { Order } from './entities/order.entity';
+import { HelpController } from './help.controller';
+import { Help } from './entities/help.entity';
+import { HelpService } from './help.service';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
+    TypeOrmModule.forFeature([Project, Help]),
     TypeOrmModule.forFeature([Project]),
     TypeOrmModule.forFeature([Weekreport]),
     TypeOrmModule.forFeature([Problem]),
@@ -21,7 +25,7 @@ import { Order } from './entities/order.entity';
     TypeOrmModule.forFeature([Event]),
     TypeOrmModule.forFeature([Order]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, HelpController],
+  providers: [AppService, HelpService],
 })
 export class AppModule {}
